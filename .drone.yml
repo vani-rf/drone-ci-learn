@@ -9,6 +9,3 @@ steps:
   commands:
     - sleep 5 # give docker enough time to start
     - docker ps -a
-  volumes:
-    - name: temp
-      path: /tmp
