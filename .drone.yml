@@ -1,31 +1,31 @@
 kind: pipeline
 name: default
-
-trigger:
-  event:
-    include:
-    - push
-  branch:
-  - main
+type: docker
 
 steps:
-  - name: build-docker-image
+  - name: build
     image: docker:dind
     volumes:
-    - name: dockersock
-      path: /va
+      - name: dockersock
+        path: /var/run
     commands:
+      - sleep 5
       - docker build -t drone-ci-learn:latest .
       - docker push drone-ci-learn:latest
 
 services:
-- name: docker
-  image: docker:dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
 
 volumes:
-- name: dockersock
-  temp: {}
+  - name: dockersock
+    temp: {}
+trigger:
+  event:
+    - push
+  branch:
+  - main
