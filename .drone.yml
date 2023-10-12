@@ -1,15 +1,15 @@
 kind: pipeline
+type: exec
 name: default
 
 steps:
-- name: build
-  image: plugins/docker
-  privileged: true
-  settings:
-    debug: true
-  commands:
-    - sleep 5 # give docker enough time to start
-    - docker ps -a
-  volumes:
-    - name: temp
-      path: /tmp
+  - name: build
+    commands:
+      - docker build -t localhost:5000/drone-ci-learn:latest .
+
+trigger:
+  event:
+    include:
+    - push
+  branch:
+  - main
