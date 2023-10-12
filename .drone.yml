@@ -11,21 +11,7 @@ trigger:
 
 steps:
   - name: build-docker-image
-    image: docker:dind
-    volumes:
-    - name: dockersock
-      path: /var/run
+    image: docker:20
     commands:
       - docker build -t drone-ci-learn:latest .
-
-services:
-- name: docker
-  image: docker:dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
-
-volumes:
-- name: dockersock
-  temp: {}
+      - docker push drone-ci-learn:latest
