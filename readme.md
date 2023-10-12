@@ -14,6 +14,7 @@ docker run \
   --env=DRONE_RPC_SECRET=0d263f227f9d98b06bc2713fedbccae3 \
   --env=DRONE_SERVER_HOST=f44d-111-68-25-162.ngrok-free.app \
   --env=DRONE_SERVER_PROTO=https \
+  --env=DRONE_RUNNER_PRIVILEGED_IMAGES=plugins/docker \
   --publish=9000:80 \
   --publish=9443:443 \
   --restart=always \

@@ -3,7 +3,13 @@ name: default
 
 steps:
 - name: build
-  image: docker:dind
+  image: plugins/docker
+  privileged: true
+  settings:
+    debug: true
   commands:
     - sleep 5 # give docker enough time to start
     - docker ps -a
+  volumes:
+    - name: temp
+      path: /tmp
