@@ -1,18 +1,24 @@
 kind: pipeline
-type: docker
 name: default
 
 steps:
-  - name: build-docker-image
-    image: docker:20
-    commands:
-      - sleep 5
-      - docker build -t your-local-registry/your-image-name:latest .
-      - docker push your-local-registry/your-image-name:latest
+- name: build
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 5 # give docker enough time to start
+  - docker ps -a
 
-trigger:
-  event:
-    include:
-    - push
-  branch:
-  - main
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+
+volumes:
+- name: dockersock
+  temp: {}
