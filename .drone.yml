@@ -3,25 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: docker
-  environment:
-    DOCKER_HOST: tcp://docker:2375
-  volumes:
-  - name: dockersock
-    path: /var/run
+  image: plugins/docker
   commands:
   - sleep 5 # give docker enough time to start
   - docker ps -a
-
-services:
-- name: docker
-  image: docker:dind
-  command: [ "--storage-driver=vfs", "--tls=false" ]
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
-
-volumes:
-- name: dockersock
-  temp: {}
