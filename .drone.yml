@@ -10,7 +10,7 @@ trigger:
   - main
 
 steps:
-- name: greeting
-  image: golang:1.21
-  commands:
-  - go build
+  - name: build-docker-image
+    image: docker:20
+    commands:
+      - docker build -t drone-ci-learn:latest .
