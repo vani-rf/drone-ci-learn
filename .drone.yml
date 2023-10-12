@@ -3,9 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: plugins/docker
-  settings:
-    debug: true
+  image: docker:dind
   commands:
     - sleep 5 # give docker enough time to start
     - docker ps -a
