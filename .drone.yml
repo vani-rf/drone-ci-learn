@@ -4,7 +4,6 @@ name: default
 steps:
 - name: build
   image: plugins/docker
-  privileged: true
   settings:
     debug: true
   commands:
