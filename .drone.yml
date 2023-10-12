@@ -3,7 +3,9 @@ name: default
 
 steps:
 - name: build
-  image: docker:dind
+  image: docker
+  environment:
+    - DOCKER_HOST=tcp://docker:2375
   volumes:
   - name: dockersock
     path: /var/run
@@ -14,7 +16,8 @@ steps:
 services:
 - name: docker
   image: docker:dind
-  privileged: false
+  command: [ "--storage-driver=vfs", "--tls=false" ]
+  privileged: true
   volumes:
   - name: dockersock
     path: /var/run
