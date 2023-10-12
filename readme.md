@@ -43,6 +43,5 @@ docker run --detach \
 ```
 
 ### Example Badged
-```
+
 [![Build Status](https://f44d-111-68-25-162.ngrok-free.app/api/badges/vani-rf/drone-ci-learn/status.svg)](https://f44d-111-68-25-162.ngrok-free.app/vani-rf/drone-ci-learn)
-```
